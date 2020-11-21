@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "fermentationmod",
+  "version": "${version}",
+  "name": "FermentationMod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/FermentationMod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.jipthechip.fermentationmod.client.FermentationModClient"
+    ],
+    "main": [
+      "com.jipthechip.fermentationmod.FermentationMod"
+    ]
+  },
+  "mixins": [
+    "FermentationMod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.10.7",
+    "fabric": "*",
+    "minecraft": "1.16.4"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "multipart": [
+    {   "when": { "facing": "north" },
+      "apply": { "model": "fermentationmod:block/masher_basin"}
+    },
+    {   "when": { "facing": "south" },
+      "apply": { "model": "fermentationmod:block/masher_basin", "y": 180}
+    },
+    {   "when": { "facing": "east" },
+      "apply": { "model": "fermentationmod:block/masher_basin", "y": 90}
+    },
+    {   "when": { "facing": "west" },
+      "apply": { "model": "fermentationmod:block/masher_basin", "y": 270}
+    },
+    {   "when": {"contains_rod": "true", "rod_facing": "north" },
+      "apply": { "model": "fermentationmod:block/masher_rod_inserted"}
+    },
+    {   "when": { "contains_rod": "true", "rod_facing": "south"},
+      "apply": { "model": "fermentationmod:block/masher_rod_inserted", "y": 180}
+    },
+    {   "when": { "contains_rod": "true", "rod_facing": "east"},
+      "apply": { "model": "fermentationmod:block/masher_rod_inserted", "y": 90}
+    },
+    {   "when": { "contains_rod": "true", "rod_facing": "west"},
+      "apply": { "model": "fermentationmod:block/masher_rod_inserted", "y": 270}
+    },
+    {   "when": { "contains_water": "true"},
+      "apply": { "model": "fermentationmod:block/masher_water"}
+    }
+  ]
+}

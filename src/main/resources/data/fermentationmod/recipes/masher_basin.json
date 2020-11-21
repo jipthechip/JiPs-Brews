@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x x",
+    "x x",
+    "yyy"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:iron_ingot"
+    },
+    "y": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "fermentationmod:masher_basin"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " yx",
+    "xxx",
+    "x  "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:iron_ingot"
+    },
+    "y": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "fermentationmod:masher_crank"
+  }
+}

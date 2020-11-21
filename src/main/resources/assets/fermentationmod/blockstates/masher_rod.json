@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "fermentationmod:block/masher_rod" },
+    "facing=south": { "model": "fermentationmod:block/masher_rod", "y": 180 },
+    "facing=west":  { "model": "fermentationmod:block/masher_rod", "y": 270 },
+    "facing=east":  { "model": "fermentationmod:block/masher_rod", "y": 90 }
+  }
+}
