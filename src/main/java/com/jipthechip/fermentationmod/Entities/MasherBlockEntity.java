@@ -1,19 +1,25 @@
 package com.jipthechip.fermentationmod.Entities;
 
 import com.jipthechip.fermentationmod.Models.*;
+import com.jipthechip.fermentationmod.Utils.UtilList;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
 import com.jipthechip.fermentationmod.Models.FermentableMap;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-import static com.jipthechip.fermentationmod.Utils.UtilsList.*;
+import static com.jipthechip.fermentationmod.Utils.UtilList.*;
 
 public class MasherBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
 
@@ -28,6 +34,7 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
 
     public MasherBlockEntity() {
         super(BlockEntitiesList.MASHER);
+
         stir_progress = 0;
         volume = 0;
         sugar_content = 0;
@@ -132,11 +139,11 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
         return stir_progress;
     }
 
-    public void stir(){
-        if(stir_progress < 10){
-            stir_progress++;
-        }
+    public boolean stir(){
+        if(stir_progress >= 10) return false;
+        stir_progress++;
         Arrays.fill(items_stirred, true);
+        return true;
     }
     public void resetStirProgress(){
         stir_progress = 0;

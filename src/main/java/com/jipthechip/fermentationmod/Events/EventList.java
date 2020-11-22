@@ -4,26 +4,26 @@ import com.jipthechip.fermentationmod.Blocks.BlockList;
 import com.jipthechip.fermentationmod.Entities.MasherBlockEntity;
 import com.jipthechip.fermentationmod.Entities.TestBlockEntity;
 import com.jipthechip.fermentationmod.Models.FermentableMap;
+import com.jipthechip.fermentationmod.Utils.UtilList;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShapes;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.jipthechip.fermentationmod.Blocks.MasherBasinBlock.*;
 import static com.jipthechip.fermentationmod.Blocks.MasherCrankBlock.CRANK_FACING;
@@ -65,7 +65,10 @@ public class EventList {
                         if(itemStack == ItemStack.EMPTY) return ActionResult.PASS;
                         world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, itemStack));
                         masherBlockEntity.markDirty();
-                        if(!world.isClient()) masherBlockEntity.sync();
+                        if(!world.isClient()) {
+                            masherBlockEntity.markDirty();
+                            masherBlockEntity.sync();
+                        }
                         return ActionResult.SUCCESS;
                     }else if (mainHand.getItem() == Items.WATER_BUCKET && !state.get(CONTAINS_WATER)) { // fill basin with water (need to cancel water place event)
                         if(!playerEntity.isCreative()) playerEntity.setStackInHand(hand, new ItemStack(Items.BUCKET));
@@ -81,8 +84,10 @@ public class EventList {
                             masherBlockEntity.removeItem();
                         }
                         masherBlockEntity.resetStirProgress();
-                        masherBlockEntity.markDirty();
-                        if(!world.isClient()) masherBlockEntity.sync();
+                        if(!world.isClient()) {
+                            masherBlockEntity.markDirty();
+                            masherBlockEntity.sync();
+                        }
 
                         world.setBlockState(pos, state.with(CONTAINS_WATER, false));
                         return ActionResult.SUCCESS;
@@ -100,8 +105,10 @@ public class EventList {
                             mainHand.setCount(mainHand.getCount()+1);
                             return ActionResult.PASS;
                         }
-                        masherBlockEntity.markDirty();
-                        if(!world.isClient()) masherBlockEntity.sync();
+                        if(!world.isClient()) {
+                            masherBlockEntity.markDirty();
+                            masherBlockEntity.sync();
+                        }
                         return ActionResult.SUCCESS;
                     }
                 }
@@ -115,10 +122,14 @@ public class EventList {
                         world.setBlockState(pos.down(), belowState.with(ROD_FACING, state.get(CRANK_FACING))); // set rod to turn with crank
                         MasherBlockEntity masherBlockEntity = (MasherBlockEntity) world.getBlockEntity(pos.down());
                         assert masherBlockEntity != null;
-                        if(masherBlockEntity.containsItems()) masherBlockEntity.stir();
-                        //if(masherBlockEntity.getStirProgress() == 10) world.addParticle(ParticleEffect);
-                        masherBlockEntity.markDirty();
-                        if(!world.isClient()) masherBlockEntity.sync();
+                        if(masherBlockEntity.containsItems()) if(masherBlockEntity.stir() && masherBlockEntity.getStirProgress() == 10) {
+                            Random random = new Random();
+                            for(int i = 0; i < 20; i ++) UtilList.sendParticlePacket(world, pos, random.nextDouble(), 0, random.nextDouble(), new Identifier("splash"));
+                        }
+                        if(!world.isClient()) {
+                            masherBlockEntity.markDirty();
+                            masherBlockEntity.sync();
+                        }
                     }
                 }
                 return ActionResult.SUCCESS;
