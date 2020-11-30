@@ -93,14 +93,10 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
                 itemStack = masherBlockEntity.removeItem();
             }
         }
-
         if(state.get(CONTAINS_ROD)){
             world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, new ItemStack(MASHER_ROD.asItem())));
         }
-
     }
-
-
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context){

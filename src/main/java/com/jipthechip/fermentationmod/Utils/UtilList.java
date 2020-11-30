@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.lang.reflect.Array;
 import java.util.stream.Stream;
 
 public class UtilList {
@@ -91,5 +92,67 @@ public class UtilList {
 
         watchingPlayers.forEach(player ->
                 ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ParticleList.PLAY_BLOCK_PARTICLE_PACKET_ID, passedData));
+    }
+
+    public static int mixColors(int weight, int color1, int color2){
+
+        if(weight == 0){
+            return color2;
+        }
+
+        int color1_a = (color1 & 0xff000000) >> 24;
+        int color1_r = (color1 & 0x00ff0000) >> 16;
+        int color1_g = (color1 & 0x0000ff00) >> 8;
+        int color1_b = color1 & 0x000000ff;
+
+        int color2_a = (color2 & 0xff000000) >> 24;
+        int color2_r = (color2 & 0x00ff0000) >> 16;
+        int color2_g = (color2 & 0x0000ff00) >> 8;
+        int color2_b = color2 & 0x000000ff;
+
+        int result_a = color2_a;
+        int result_r = color2_r;
+        int result_g = color2_g;
+        int result_b = color2_b;
+
+        for(int i = 0; i < weight; i++){
+            result_a = (result_a + color1_a)/2;
+            result_r = (result_r + color1_r)/2;
+            result_g = (result_g + color1_g)/2;
+            result_b = (result_b + color1_b)/2;
+        }
+        result_a = result_a << 24;
+        result_r = result_r << 16;
+        result_g = result_g << 8;
+
+        return result_a + result_r + result_g + result_b;
+    }
+
+    public static <T> T concatenate(T a, T b) {
+        if (!a.getClass().isArray() || !b.getClass().isArray()) {
+            throw new IllegalArgumentException();
+        }
+
+        Class<?> resCompType;
+        Class<?> aCompType = a.getClass().getComponentType();
+        Class<?> bCompType = b.getClass().getComponentType();
+
+        if (aCompType.isAssignableFrom(bCompType)) {
+            resCompType = aCompType;
+        } else if (bCompType.isAssignableFrom(aCompType)) {
+            resCompType = bCompType;
+        } else {
+            throw new IllegalArgumentException();
+        }
+
+        int aLen = Array.getLength(a);
+        int bLen = Array.getLength(b);
+
+        @SuppressWarnings("unchecked")
+        T result = (T) Array.newInstance(resCompType, aLen + bLen);
+        System.arraycopy(a, 0, result, 0, aLen);
+        System.arraycopy(b, 0, result, aLen, bLen);
+
+        return result;
     }
 }

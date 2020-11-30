@@ -3,8 +3,9 @@
   "item.fermentationmod.beer_mug": "Beer Mug",
   "item.fermentationmod.tumbler": "Tumbler",
   "item.fermentationmod.fabric_item": "Super Epic Item",
+  "item.fermentationmod.mash_bucket": "Mash Bucket",
 
-  "block.fermentationmod.masher_basin": "Masher Basin",
+  "block.fermentationmod.masher_basin": "Masher Basin", 
   "block.fermentationmod.masher_crank": "Masher Crank",
   "block.fermentationmod.masher_rod": "Masher Rod",
   "block.fermentationmod.fabric_block": "Super Epic Block"
