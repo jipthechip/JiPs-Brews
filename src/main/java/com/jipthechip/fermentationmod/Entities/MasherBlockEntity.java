@@ -133,6 +133,7 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
     }
 
     public boolean getStirProgress(){
+        if(! containsItems()) return false;
         for(int i = 0; i < MAX_STACKS; i++){
             if(inventory.get(i) != ItemStack.EMPTY){
                 if(items_stirred[i] < 10) return false;
@@ -212,8 +213,6 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
         System.out.println("fromTag got: "+ Arrays.toString(items_stirred));
 
         Inventories.fromTag(compoundTag, inventory);
-
-        markDirty();
     }
 
     // write
@@ -231,7 +230,6 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
 
         Inventories.toTag(compoundTag, inventory);
 
-        markDirty();
         return compoundTag;
     }
 
@@ -248,8 +246,6 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
         System.out.println(System.identityHashCode(items_stirred));
 
         Inventories.fromTag(compoundTag, inventory);
-
-        markDirty();
     }
 
     @Override
@@ -265,7 +261,6 @@ public class MasherBlockEntity extends BlockEntity implements BlockEntityClientS
 
         Inventories.toTag(compoundTag, inventory);
 
-        markDirty();
         return compoundTag;
     }
 }

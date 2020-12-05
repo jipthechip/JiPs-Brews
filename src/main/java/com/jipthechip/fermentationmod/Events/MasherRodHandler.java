@@ -1,0 +1,20 @@
+package com.jipthechip.fermentationmod.Events;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import static com.jipthechip.fermentationmod.Blocks.MasherRodBlock.OUTSIDE_ROD_FACING;
+
+public class MasherRodHandler {
+
+    public static ActionResult handle(PlayerEntity playerEntity, World world, Hand hand, BlockHitResult blockHitResult, BlockState state, BlockPos pos) {
+        world.setBlockState(pos, state.with(OUTSIDE_ROD_FACING, state.get(OUTSIDE_ROD_FACING).rotateYClockwise())); // turn rod
+        return ActionResult.SUCCESS;
+    }
+}

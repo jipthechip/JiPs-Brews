@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "fermentationmod:block/airlock"},
+    "facing=south": { "model": "fermentationmod:block/airlock", "y": 180 },
+    "facing=west":  { "model": "fermentationmod:block/airlock", "y": 270 },
+    "facing=east":  { "model": "fermentationmod:block/airlock", "y": 90 }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "multipart": [
+    {   "when": { "facing": "north" },
+      "apply": { "model": "fermentationmod:block/carboy"}
+    },
+    {   "when": { "facing": "south" },
+      "apply": { "model": "fermentationmod:block/carboy", "y": 180}
+    },
+    {   "when": { "facing": "east" },
+      "apply": { "model": "fermentationmod:block/carboy", "y": 90}
+    },
+    {   "when": { "facing": "west" },
+      "apply": { "model": "fermentationmod:block/carboy", "y": 270}
+    },
+    {   "when": { "contains_liquid": "true"},
+      "apply": { "model": "fermentationmod:block/carboy_liquid"}
+    },
+    {   "when": { "facing": "north", "has_airlock": "true" },
+      "apply": { "model": "fermentationmod:block/airlock_on_carboy"}
+    },
+    {   "when": { "facing": "south", "has_airlock": "true" },
+      "apply": { "model": "fermentationmod:block/airlock_on_carboy", "y": 180}
+    },
+    {   "when": { "facing": "east", "has_airlock": "true" },
+      "apply": { "model": "fermentationmod:block/airlock_on_carboy", "y": 90}
+    },
+    {   "when": { "facing": "west", "has_airlock": "true" },
+      "apply": { "model": "fermentationmod:block/airlock_on_carboy", "y": 270}
+    }
+  ]
+}

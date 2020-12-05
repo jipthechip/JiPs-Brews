@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 
 public class MasherRodBlock extends Block {
 
+    //region VoxelShapes
     private final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(7, 0, 7, 9, 15, 9),
             Block.createCuboidShape(7, 6, 3, 8, 8, 7),
@@ -29,6 +30,7 @@ public class MasherRodBlock extends Block {
             Block.createCuboidShape(3, 11, 7, 7, 13, 8),
             Block.createCuboidShape(9, 11, 8, 13, 13, 9)
     ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR);}).get();
+    //endregion
 
     public static final DirectionProperty OUTSIDE_ROD_FACING = DirectionProperty.of("facing", Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
 

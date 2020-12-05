@@ -1,0 +1,20 @@
+{
+  "cork_open": {
+    "subtitle": "subtitles.fermentationmod.cork_open",
+    "sounds": [
+      "fermentationmod:cork_open"
+    ]
+  },
+  "cork_close": {
+    "subtitle": "subtitles.fermentationmod.cork_close",
+    "sounds": [
+      "fermentationmod:cork_close"
+    ]
+  },
+  "add_to_masher": {
+    "subtitle": "subtitles.fermentationmod.add_to_masher",
+    "sounds": [
+      "fermentationmod:add_to_masher"
+    ]
+  }
+}

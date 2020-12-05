@@ -8,5 +8,11 @@
   "block.fermentationmod.masher_basin": "Masher Basin", 
   "block.fermentationmod.masher_crank": "Masher Crank",
   "block.fermentationmod.masher_rod": "Masher Rod",
-  "block.fermentationmod.fabric_block": "Super Epic Block"
+  "block.fermentationmod.carboy": "Carboy",
+  "block.fermentationmod.airlock": "Airlock",
+  "block.fermentationmod.fabric_block": "Super Epic Block",
+
+  "subtitles.fermentationmod.cork_open": "*cork pops*",
+  "subtitles.fermentationmod.cork_close": "*cork squeaks*",
+  "subtitles.fermentationmod.add_to_masher": "*item plunks*"
 }

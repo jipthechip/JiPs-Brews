@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 
 public class MasherCrankBlock extends Block {
 
+    //region VoxelShapes
     private final VoxelShape SHAPE_N = Stream.of(
             Block.createCuboidShape(7, 1, 1, 9, 2, 9),
             Block.createCuboidShape(7, 0, 7, 9, 1, 9),
@@ -43,6 +44,7 @@ public class MasherCrankBlock extends Block {
             Block.createCuboidShape(1, 2, 7, 3, 9, 9),
             Block.createCuboidShape(1, 9, 7, 3, 10, 9)
     ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR);}).get();
+    //endregion
 
     public static final DirectionProperty CRANK_FACING = DirectionProperty.of("facing", Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
 
@@ -67,14 +69,10 @@ public class MasherCrankBlock extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context){
         switch(state.get(CRANK_FACING)){
-            case NORTH:
-                return SHAPE_N;
-            case SOUTH:
-                return SHAPE_S;
-            case EAST:
-                return SHAPE_E;
-            default:
-                return SHAPE_W;
+            case NORTH: return SHAPE_N;
+            case SOUTH: return SHAPE_S;
+            case EAST: return SHAPE_E;
+            default: return SHAPE_W;
         }
     }
 }

@@ -6,6 +6,7 @@ import com.jipthechip.fermentationmod.Entities.BlockEntitiesList;
 import com.jipthechip.fermentationmod.Events.EventList;
 import com.jipthechip.fermentationmod.Items.ItemList;
 import com.jipthechip.fermentationmod.Models.FermentableMap;
+import com.jipthechip.fermentationmod.Sounds.SoundList;
 import net.fabricmc.api.ModInitializer;
 
 public class FermentationMod implements ModInitializer {
@@ -17,5 +18,6 @@ public class FermentationMod implements ModInitializer {
         BlockEntitiesList.registerBlockEntities();
         EventList.registerEvents();
         FermentableMap.initializeFermentableMap();
+        SoundList.registerSounds();
     }
 }

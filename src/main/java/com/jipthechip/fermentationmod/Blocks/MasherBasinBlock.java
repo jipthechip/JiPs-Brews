@@ -27,10 +27,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.jipthechip.fermentationmod.Blocks.BlockList.MASHER_CRANK;
 import static com.jipthechip.fermentationmod.Blocks.BlockList.MASHER_ROD;
 
 public class MasherBasinBlock extends Block implements BlockEntityProvider {
 
+    //region VoxelShapes
     public final VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(1, 1, 0, 15, 16, 1),
             Block.createCuboidShape(1, 0, 1, 15, 1, 15),
@@ -38,6 +40,7 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
             Block.createCuboidShape(0, 1, 1, 1, 16, 15),
             Block.createCuboidShape(1, 1, 15, 15, 16, 16)
     ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR);}).get();
+    //endregion
 
     public static final DirectionProperty FACING = DirectionProperty.of("facing", Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
     public static final DirectionProperty ROD_FACING = DirectionProperty.of("rod_facing", Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
@@ -82,6 +85,8 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
         BlockPos up = pos.up();
         if(world.getBlockState(up).getBlock() == BlockList.MASHER_CRANK){
             world.breakBlock(up, true); // break crank block
+            if(!player.isCreative())
+                world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, new ItemStack(MASHER_CRANK.asItem())));
         }
         MasherBlockEntity masherBlockEntity = (MasherBlockEntity) world.getBlockEntity(pos);
         assert masherBlockEntity != null;
@@ -93,7 +98,7 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
                 itemStack = masherBlockEntity.removeItem();
             }
         }
-        if(state.get(CONTAINS_ROD)){
+        if(state.get(CONTAINS_ROD) && !player.isCreative()){
             world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, new ItemStack(MASHER_ROD.asItem())));
         }
     }

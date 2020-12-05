@@ -1,0 +1,55 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"2": "fermentationmod:block/carboy_liquid_top",
+		"4": "fermentationmod:block/carboy_liquid_side",
+		"particle": "fermentationmod:block/carboy_liquid_side"
+	},
+	"elements": [
+		{
+			"from": [2, 1, 2],
+			"to": [14, 11, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 9, 10]},
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 2.5], "texture": "#4", "tintindex": 1},
+				"east": {"uv": [0, 0, 3, 2.5], "texture": "#4", "tintindex": 1},
+				"south": {"uv": [0, 0, 3.5, 2.5], "texture": "#4", "tintindex": 1},
+				"west": {"uv": [0, 0, 3, 2.5], "texture": "#4", "tintindex": 1},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#2", "tintindex": 1},
+				"down": {"uv": [0, 0, 3.5, 3], "texture": "#4", "tintindex": 1}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, -69],
+			"translation": [0.25, 0, -4.75],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, 69],
+			"translation": [0.25, 0, -4.75],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [27, -49, 0],
+			"translation": [0, -1.25, 0],
+			"scale": [0.58, 0.58, 0.58]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}
