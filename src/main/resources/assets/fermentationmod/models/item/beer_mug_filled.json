@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fermentationmod:item/beer_mug_liquid",
+    "layer1": "fermentationmod:item/beer_mug"
+  }
+}

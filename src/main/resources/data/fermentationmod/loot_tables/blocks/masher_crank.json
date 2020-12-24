@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block",
+  "pools":  [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "fermentationmod:masher_crank"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "player": {
+              "gamemode": "survival"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

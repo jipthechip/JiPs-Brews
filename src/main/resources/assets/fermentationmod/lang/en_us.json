@@ -4,12 +4,14 @@
   "item.fermentationmod.tumbler": "Tumbler",
   "item.fermentationmod.fabric_item": "Super Epic Item",
   "item.fermentationmod.mash_bucket": "Mash Bucket",
+  "item.fermentationmod.yeast_culture": "Yeast Culture",
 
   "block.fermentationmod.masher_basin": "Masher Basin", 
   "block.fermentationmod.masher_crank": "Masher Crank",
   "block.fermentationmod.masher_rod": "Masher Rod",
   "block.fermentationmod.carboy": "Carboy",
   "block.fermentationmod.airlock": "Airlock",
+  "block.fermentationmod.mason_jar": "Mason Jar",
   "block.fermentationmod.fabric_block": "Super Epic Block",
 
   "subtitles.fermentationmod.cork_open": "*cork pops*",

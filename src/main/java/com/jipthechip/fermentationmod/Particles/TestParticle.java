@@ -20,6 +20,6 @@ public class TestParticle extends SpriteBillboardParticle {
 
     @Override
     public ParticleTextureSheet getType() {
-        return null;
+        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 }

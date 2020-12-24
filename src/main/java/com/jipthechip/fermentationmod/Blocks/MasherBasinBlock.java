@@ -6,15 +6,16 @@ import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potions;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -24,11 +25,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.stream.Stream;
-
-import static com.jipthechip.fermentationmod.Blocks.BlockList.MASHER_CRANK;
-import static com.jipthechip.fermentationmod.Blocks.BlockList.MASHER_ROD;
 
 public class MasherBasinBlock extends Block implements BlockEntityProvider {
 
@@ -84,9 +81,7 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
         super.onBreak(world, pos, state, player);
         BlockPos up = pos.up();
         if(world.getBlockState(up).getBlock() == BlockList.MASHER_CRANK){
-            world.breakBlock(up, true); // break crank block
-            if(!player.isCreative())
-                world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, new ItemStack(MASHER_CRANK.asItem())));
+            world.breakBlock(up, true, player); // break crank block
         }
         MasherBlockEntity masherBlockEntity = (MasherBlockEntity) world.getBlockEntity(pos);
         assert masherBlockEntity != null;
@@ -98,17 +93,10 @@ public class MasherBasinBlock extends Block implements BlockEntityProvider {
                 itemStack = masherBlockEntity.removeItem();
             }
         }
-        if(state.get(CONTAINS_ROD) && !player.isCreative()){
-            world.spawnEntity(new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY()+0.5, (double)pos.getZ()+ 0.5, new ItemStack(MASHER_ROD.asItem())));
-        }
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context){
         return SHAPE;
     }
-
-
-
-
 }

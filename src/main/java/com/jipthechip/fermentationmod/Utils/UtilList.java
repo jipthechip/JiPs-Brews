@@ -6,6 +6,8 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -71,11 +73,6 @@ public class UtilList {
 
     public static double[] vec3dToDoubleArray(Vec3d vec3d){
         return new double[]{vec3d.getX(), vec3d.getY(), vec3d.getZ()};
-    }
-
-    public static Identifier identifierFromString(String str){
-        String[] arr = str.split(":");
-        return new Identifier(arr[0], arr[1]);
     }
 
     public static void sendParticlePacket(World world, BlockPos pos, double particleX, double particleY, double particleZ, Identifier identifier){
@@ -154,5 +151,19 @@ public class UtilList {
         System.arraycopy(b, 0, result, aLen, bLen);
 
         return result;
+    }
+
+    public static boolean intArrayContains(int [] arr, int value){
+        for (int item : arr) if (item == value) return true;
+        return false;
+    }
+
+    public static int getItemColor(ItemStack itemStack, int type){
+        CompoundTag tag = itemStack.getTag();
+        if(tag == null) return 0xFFFFFFFF;
+        if(type == 0)
+            return tag.getInt("color");
+        else
+            return tag.getInt("outline_color");
     }
 }

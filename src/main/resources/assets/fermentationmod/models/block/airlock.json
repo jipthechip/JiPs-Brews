@@ -6,7 +6,7 @@
 		"3": "fermentationmod:block/transparent",
 		"4": "fermentationmod:block/airlock_cork",
 		"5": "fermentationmod:block/carboy_liquid_top",
-		"particle": "fermentationmod:block/airlock_cork"
+		"particle": "minecraft:block/glass"
 	},
 	"elements": [
 		{

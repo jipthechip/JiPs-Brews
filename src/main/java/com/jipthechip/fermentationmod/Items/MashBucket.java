@@ -38,10 +38,4 @@ public class MashBucket extends Item{
         return UtilList.intArrayToFloat(tag.getIntArray("flavors"));
     }
 
-    public static int getColor(ItemStack itemStack){
-        CompoundTag tag = itemStack.getTag();
-        if(tag == null) return 0xFFFFFFFF;
-        return tag.getInt("color");
-    }
-
 }

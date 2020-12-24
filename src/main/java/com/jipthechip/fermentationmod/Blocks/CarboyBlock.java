@@ -26,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 import static com.jipthechip.fermentationmod.Blocks.BlockList.AIRLOCK;
-import static com.jipthechip.fermentationmod.Blocks.BlockList.MASHER_ROD;
 
 public class CarboyBlock extends Block implements BlockEntityProvider {
 

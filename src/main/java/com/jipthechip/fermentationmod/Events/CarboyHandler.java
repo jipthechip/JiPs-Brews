@@ -2,6 +2,7 @@ package com.jipthechip.fermentationmod.Events;
 
 import com.jipthechip.fermentationmod.Blocks.BlockList;
 import com.jipthechip.fermentationmod.Entities.CarboyBlockEntity;
+import com.jipthechip.fermentationmod.Items.AlcoholicDrink;
 import com.jipthechip.fermentationmod.Items.ItemList;
 import com.jipthechip.fermentationmod.Items.MashBucket;
 import com.jipthechip.fermentationmod.Sounds.SoundList;
@@ -21,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.jipthechip.fermentationmod.Blocks.CarboyBlock.CONTAINS_LIQUID;
 import static com.jipthechip.fermentationmod.Blocks.CarboyBlock.HAS_AIRLOCK;
@@ -63,8 +65,29 @@ public class CarboyHandler {
             world.setBlockState(pos, state.with(HAS_AIRLOCK, false));
             world.playSound(null, pos, SoundList.CORK_OPEN_EVENT, SoundCategory.BLOCKS, 1f, 1f);
             return ActionResult.SUCCESS;
-        }
+        }else if(mainHand.getItem() == ItemList.YEAST_CULTURE && state.get(CONTAINS_LIQUID) && state.get(HAS_AIRLOCK) && !carboyBlockEntity.isFermenting()){
+            CompoundTag tag = mainHand.getTag();
+            assert tag != null;
+            carboyBlockEntity.startFermentation(tag);
+            mainHand.split(1);
+            playerEntity.setStackInHand(hand, mainHand.copy());
+            return ActionResult.SUCCESS;
+        }else if(mainHand.getItem() == ItemList.BEER_MUG && state.get(CONTAINS_LIQUID)){
+            mainHand.split(1);
+            playerEntity.setStackInHand(hand, mainHand.copy());
+            ItemStack filledBeerMug = new ItemStack(ItemList.BEER_MUG_FILLED);
+            AlcoholicDrink.setNBT(filledBeerMug, carboyBlockEntity.getAlcoholContent(), carboyBlockEntity.getSugarContent(), carboyBlockEntity.getFlavors(), carboyBlockEntity.getColor());
+            if(((ArrayList<ItemStack>) playerEntity.getItemsHand()).get(hand.ordinal()) == ItemStack.EMPTY){
+                playerEntity.setStackInHand(hand, filledBeerMug);
+            }else{
+                playerEntity.giveItemStack(filledBeerMug);
+            }
+            System.out.println("Alcohol content: "+filledBeerMug.getTag().getFloat("alcohol_content"));
+            System.out.println("Sugar content: "+filledBeerMug.getTag().getFloat("sugar_content"));
+            System.out.println("Flavors: "+ Arrays.toString(UtilList.intArrayToFloat(filledBeerMug.getTag().getIntArray("flavors"))));
+            System.out.println("Color: "+filledBeerMug.getTag().getInt("color"));
 
+        }
         return ActionResult.PASS;
     }
 }

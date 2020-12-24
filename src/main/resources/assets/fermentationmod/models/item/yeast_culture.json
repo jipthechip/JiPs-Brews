@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fermentationmod:item/yeast_culture",
+    "layer1": "fermentationmod:item/yeast_culture_outline"
+  }
+}

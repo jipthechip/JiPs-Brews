@@ -44,7 +44,7 @@ public class BlockColorList {
                 assert view != null;
                 BlockEntity blockEntity = view.getBlockEntity(pos);
                 CarboyBlockEntity carboyBlockEntity = (CarboyBlockEntity) blockEntity;
-                if (carboyBlockEntity == null) return 0;
+                if (carboyBlockEntity == null) return Material.GLASS.getColor().color;
                 if(tintIndex == 2) return Material.WATER.getColor().color;
                 return carboyBlockEntity.getColor();
             };
@@ -55,10 +55,17 @@ public class BlockColorList {
                 return Material.WATER.getColor().color;
             };
 
+    private static final BlockColorProvider MASON_JAR_BLOCKCOLOR =
+            (state, view, pos, tintIndex) -> {
+                assert view != null;
+                return Material.WATER.getColor().color;
+            };
+
     public static void registerBlockColors(){
         ColorProviderRegistry.BLOCK.register(FABRIC_BLOCKCOLOR, BlockList.FABRIC_BLOCK);
         ColorProviderRegistry.BLOCK.register(MASHER_BASIN_BLOCKCOLOR, BlockList.MASHER_BASIN);
         ColorProviderRegistry.BLOCK.register(CARBOY_BLOCKCOLOR, BlockList.CARBOY);
         ColorProviderRegistry.BLOCK.register(AIRLOCK_BLOCKCOLOR, BlockList.AIRLOCK);
+        ColorProviderRegistry.BLOCK.register(MASON_JAR_BLOCKCOLOR, BlockList.MASON_JAR);
     }
 }

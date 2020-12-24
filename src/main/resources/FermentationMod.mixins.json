@@ -4,8 +4,12 @@
   "package": "com.jipthechip.fermentationmod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "NauseaMixin.LivingEntityMixin",
+    "NauseaMixin.PlayerEntityMixin"
   ],
   "client": [
+    "NauseaMixin.GameRendererMixin",
+    "NauseaMixin.ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

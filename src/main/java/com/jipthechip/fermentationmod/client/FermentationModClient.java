@@ -16,6 +16,7 @@ public class FermentationModClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockList.CARBOY, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockList.AIRLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockList.MASON_JAR, RenderLayer.getTranslucent());
         BlockColorList.registerBlockColors();
         ItemColorList.registerItemColors();
         ParticleList.registerParticles();

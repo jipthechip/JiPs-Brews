@@ -1,0 +1,13 @@
+{
+  "multipart": [
+    {   "when": { "covered": "true" },
+      "apply": { "model": "fermentationmod:block/mason_jar_with_cover"}
+    },
+    {   "when": { "covered": "false" },
+      "apply": { "model": "fermentationmod:block/mason_jar"}
+    },
+    {   "when": { "contains_water": "true" },
+      "apply": { "model": "fermentationmod:block/mason_jar_water"}
+    }
+  ]
+}

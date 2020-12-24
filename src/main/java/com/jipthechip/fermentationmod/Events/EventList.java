@@ -3,6 +3,7 @@ package com.jipthechip.fermentationmod.Events;
 import com.jipthechip.fermentationmod.Blocks.BlockList;
 import com.jipthechip.fermentationmod.Entities.CarboyBlockEntity;
 import com.jipthechip.fermentationmod.Entities.MasherBlockEntity;
+import com.jipthechip.fermentationmod.Entities.MasonJarBlockEntity;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -32,6 +33,9 @@ public class EventList {
                 else if(blockEntity instanceof CarboyBlockEntity){
                     return CarboyHandler.handle(playerEntity, world, hand, blockHitResult, state, pos, blockEntity);
                 }
+                else if(blockEntity instanceof MasonJarBlockEntity){
+                    return MasonJarHandler.handle(playerEntity, world, hand, blockHitResult, state, pos, blockEntity);
+                }
             }
             // turn crank
             else if(block == BlockList.MASHER_CRANK){
@@ -45,7 +49,6 @@ public class EventList {
         });
 
     public static void registerEvents(){
-
         UseBlockCallback.EVENT.register(useBlockCallback);
     }
 }
